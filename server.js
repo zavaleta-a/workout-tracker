@@ -18,4 +18,9 @@ mongoose.connect(MONGODB_URI, {
   useFindAndModify: false,
 });
 
+app.use(router);
+require("./routes/apiRoutes")(app);
 
+app.listen(PORT, () => {
+  console.log("Now listening on port ${PORT}");
+});
