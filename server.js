@@ -11,3 +11,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static.apply("public"));
 
+var MONGODB_URI =
+  process.env.MONGODB_URI || "mongodb://localhost/workoutTrakcerDB";
+mongoose.connect(MONGODB_URI, {
+  useNewUrlParser: true,
+  useFindAndModify: false,
+});
+
+
