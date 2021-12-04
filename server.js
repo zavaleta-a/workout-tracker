@@ -9,7 +9,7 @@ app.use(morgan("dev"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static.apply("public"));
+app.use(express.static(__dirname + "public"));
 
 var MONGODB_URI =
   process.env.MONGODB_URI || "mongodb://localhost/workoutTrakcerDB";
@@ -18,7 +18,7 @@ mongoose.connect(MONGODB_URI, {
   useFindAndModify: false,
 });
 
-app.use(router);
+require("./routes/htmlRoutes")(app);
 require("./routes/apiRoutes")(app);
 
 app.listen(PORT, () => {
